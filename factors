@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+FILE=$1
+
+while read -r NUMBERS; do
+    factors=($(factor "$NUMBERS"))
+    if [ ${#factors[@]} -ge 3 ]; then
+      echo "$NUMBERS=$(($NUMBERS / ${factors[1]}))*${factors[1]}"
+    else
+      echo "$NUMBERS has no valid factors."
+    fi
+done < "$FILE"
